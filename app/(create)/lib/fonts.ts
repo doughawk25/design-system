@@ -3,6 +3,7 @@ import {
   Figtree,
   Geist,
   Geist_Mono,
+  IBM_Plex_Sans,
   Inter,
   JetBrains_Mono,
   Noto_Sans,
@@ -12,11 +13,17 @@ import {
   Raleway,
   Roboto,
 } from "next/font/google"
-import { suisseSans } from "@/lib/fonts"
 
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
+})
+
+const ibmPlexSans = IBM_Plex_Sans({
+  subsets: ["latin"],
+  variable: "--font-sans",
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
 })
 
 const notoSans = Noto_Sans({
@@ -76,9 +83,9 @@ const outfit = Outfit({
 
 export const FONTS = [
   {
-    name: "Suisse",
-    value: "suisse",
-    font: suisseSans,
+    name: "IBM Plex Sans",
+    value: "ibm-plex",
+    font: ibmPlexSans,
     type: "sans",
   },
   {

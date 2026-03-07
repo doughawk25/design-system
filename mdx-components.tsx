@@ -215,7 +215,7 @@ export const mdxComponents = {
     return (
       <figcaption
         className={cn(
-          "text-code-foreground [&_svg]:text-code-foreground flex items-center gap-2 [&_svg]:size-4 [&_svg]:opacity-70",
+          "text-zinc-950 [&_svg]:text-zinc-950 flex items-center gap-2 [&_svg]:size-4 [&_svg]:opacity-70",
           className
         )}
         {...props}
@@ -378,7 +378,7 @@ export const mdxComponents = {
   LinkedCard: ({ className, ...props }: React.ComponentProps<typeof Link>) => (
     <Link
       className={cn(
-        "bg-surface text-surface-foreground hover:bg-surface/80 flex w-full flex-col items-center rounded-xl p-6 transition-colors sm:p-10",
+        "bg-zinc-50 text-zinc-950 hover:bg-zinc-50/80 flex w-full flex-col items-center rounded-xl p-6 transition-colors sm:p-10",
         className
       )}
       {...props}

@@ -20,7 +20,7 @@ export function Callout({
     <Alert
       data-variant={variant}
       className={cn(
-        "bg-surface text-surface-foreground border-surface mt-6 w-auto rounded-xl md:-mx-1 **:[code]:border",
+        "bg-zinc-50 text-zinc-950 border-zinc-200 mt-6 w-auto rounded-xl md:-mx-1 **:[code]:border",
         className
       )}
       {...props}

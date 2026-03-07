@@ -15,7 +15,7 @@ export function UiShowcaseHeaderNav() {
 
   return (
     <header
-      className="border-border surface-blur-strong relative z-10 flex items-center justify-between gap-4 rounded-lg border px-2 py-2 shadow-sm"
+      className="border-border surface-blur-strong relative z-10 flex items-center justify-between gap-4 rounded-lg border px-0.5 py-0.5 shadow-sm"
       aria-label="Main navigation"
     >
       <div className="flex items-center gap-2">

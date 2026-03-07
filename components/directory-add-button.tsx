@@ -127,7 +127,7 @@ export function DirectoryAddButton({
       </div>
       {Object.entries(commands).map(([key, cmd]) => (
         <TabsContent key={key} value={key} className="mt-0">
-          <div className="bg-surface text-surface-foreground px-3 py-3">
+          <div className="bg-zinc-50 text-zinc-950 px-3 py-3">
             <div className="no-scrollbar overflow-x-auto">
               <code className="font-mono text-sm whitespace-nowrap">{cmd}</code>
             </div>

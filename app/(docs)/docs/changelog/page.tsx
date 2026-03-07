@@ -91,7 +91,7 @@ export default function ChangelogPage() {
                       <Link
                         key={page.url}
                         href={page.url}
-                        className="bg-surface text-surface-foreground hover:bg-surface/80 flex w-full flex-col rounded-xl px-4 py-3 transition-colors"
+                        className="bg-zinc-50 text-zinc-950 hover:bg-zinc-50/80 flex w-full flex-col rounded-xl px-4 py-3 transition-colors"
                       >
                         <span className="text-muted-foreground text-xs">
                           {date}

@@ -2,11 +2,9 @@
 
 import * as React from "react"
 import Script from "next/script"
-import { MoonIcon, SunIcon } from "lucide-react"
 import { useTheme } from "next-themes"
 
 import { useMetaColor } from "@/hooks/use-meta-color"
-import { Button } from "@/registry/new-york-v4/ui/button"
 import { Kbd } from "@/registry/new-york-v4/ui/kbd"
 import {
   Tooltip,
@@ -21,8 +19,14 @@ import {
 
 export const DARK_MODE_FORWARD_TYPE = "dark-mode-forward"
 
+const THEME_OPTIONS = [
+  { value: "light", label: "Light" },
+  { value: "dark", label: "Dark" },
+  { value: "system", label: "System" },
+] as const
+
 export function ModeSwitcher() {
-  const { setTheme, resolvedTheme } = useTheme()
+  const { theme, setTheme, resolvedTheme } = useTheme()
   const { setMetaColor, metaColor } = useMetaColor()
 
   React.useEffect(() => {
@@ -59,14 +63,16 @@ export function ModeSwitcher() {
     return () => document.removeEventListener("keydown", down)
   }, [toggleTheme])
 
+  const selectedTheme = theme ?? "system"
+
   return (
     <Tooltip>
       <TooltipTrigger asChild>
         <div className="extend-touch-target">
           <Tabs
-            value={resolvedTheme === "dark" ? "dark" : "light"}
+            value={selectedTheme}
             onValueChange={(value) =>
-              setTheme((value as "light" | "dark") ?? "light")
+              setTheme(value as "light" | "dark" | "system")
             }
             className="flex-row gap-0"
           >
@@ -74,26 +80,22 @@ export function ModeSwitcher() {
               aria-label="Select theme"
               className="h-8"
             >
-              <TabsTrigger
-                value="light"
-                aria-label="Light mode"
-                className="h-8 w-8 px-0"
-              >
-                <SunIcon className="size-4" />
-              </TabsTrigger>
-              <TabsTrigger
-                value="dark"
-                aria-label="Dark mode"
-                className="h-8 w-8 px-0"
-              >
-                <MoonIcon className="size-4" />
-              </TabsTrigger>
+              {THEME_OPTIONS.map(({ value, label }) => (
+                <TabsTrigger
+                  key={value}
+                  value={value}
+                  aria-label={`${label} mode`}
+                  className="h-8 px-3 text-xs"
+                >
+                  {label}
+                </TabsTrigger>
+              ))}
             </TabsList>
           </Tabs>
         </div>
       </TooltipTrigger>
       <TooltipContent className="flex items-center gap-2 pr-1">
-        Toggle mode <Kbd>D</Kbd>
+        Theme <Kbd>D</Kbd> toggles light/dark
       </TooltipContent>
     </Tooltip>
   )

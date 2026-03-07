@@ -1,23 +1,25 @@
 import {
-  Geist_Mono as FontMono,
+  IBM_Plex_Mono,
+  IBM_Plex_Sans,
   Noto_Sans_Arabic as FontNotoSansArabic,
   Noto_Sans_Hebrew as FontNotoSansHebrew,
   Inter,
 } from "next/font/google"
-import localFont from "next/font/local"
 
 import { cn } from "@/lib/utils"
 
-const fontSans = localFont({
-  src: "../public/fonts/suisse/suisse/SuisseIntl-Regular.otf",
+const fontSans = IBM_Plex_Sans({
+  subsets: ["latin"],
   variable: "--font-sans",
+  weight: ["400", "500", "600", "700"],
   display: "swap",
 })
 
-const fontMono = FontMono({
+const fontMono = IBM_Plex_Mono({
   subsets: ["latin"],
   variable: "--font-mono",
-  weight: ["400"],
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
 })
 
 const fontInter = Inter({
@@ -34,8 +36,6 @@ const fontNotoSansHebrew = FontNotoSansHebrew({
   subsets: ["latin"],
   variable: "--font-he",
 })
-
-export const suisseSans = fontSans
 
 export const fontVariables = cn(
   fontSans.variable,

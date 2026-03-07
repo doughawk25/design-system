@@ -2,6 +2,18 @@ import { type RegistryItem } from "shadcn/schema"
 
 export const fonts = [
   {
+    name: "font-ibm-plex",
+    title: "IBM Plex Sans",
+    type: "registry:font",
+    font: {
+      family: "'IBM Plex Sans', sans-serif",
+      provider: "google",
+      variable: "--font-sans",
+      subsets: ["latin"],
+      import: "IBM_Plex_Sans",
+    },
+  },
+  {
     name: "font-geist",
     title: "Geist",
     type: "registry:font",
@@ -117,18 +129,6 @@ export const fonts = [
       variable: "--font-sans",
       subsets: ["latin"],
       import: "Outfit",
-    },
-  },
-  {
-    name: "font-suisse",
-    title: "Suisse",
-    type: "registry:font",
-    font: {
-      family: "'Suisse Intl', sans-serif",
-      provider: "google",
-      variable: "--font-sans",
-      // Local font in this project; v0 export handles it specially.
-      import: "Inter",
     },
   },
   {

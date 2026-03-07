@@ -241,7 +241,7 @@ export function ToolbarControls() {
                 packageManager: value as "pnpm" | "npm" | "yarn" | "bun",
               })
             }}
-            className="bg-surface min-w-0 gap-0 overflow-hidden rounded-lg border"
+            className="bg-zinc-50 min-w-0 gap-0 overflow-hidden rounded-lg border"
           >
             <div className="flex items-center gap-2 p-2">
               <TabsList className="*:data-[slot=tabs-trigger]:data-[state=active]:border-input h-auto rounded-none bg-transparent p-0 font-mono group-data-[orientation=horizontal]/tabs:h-8 *:data-[slot=tabs-trigger]:h-7 *:data-[slot=tabs-trigger]:border *:data-[slot=tabs-trigger]:border-transparent *:data-[slot=tabs-trigger]:pt-0.5 *:data-[slot=tabs-trigger]:shadow-none!">
@@ -274,7 +274,7 @@ export function ToolbarControls() {
             {Object.entries(commands).map(([key, cmd]) => {
               return (
                 <TabsContent key={key} value={key}>
-                  <div className="bg-surface border-border/50 text-surface-foreground relative overflow-hidden border-t px-3 py-3">
+                  <div className="bg-zinc-50 border-border/50 text-zinc-950 relative overflow-hidden border-t px-3 py-3">
                     <div className="no-scrollbar overflow-x-auto">
                       <code className="font-mono text-sm whitespace-nowrap">
                         {cmd}

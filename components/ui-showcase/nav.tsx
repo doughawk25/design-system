@@ -43,7 +43,7 @@ export function UiShowcaseNav() {
     >
       <div
         ref={scrollRef}
-        className="no-scrollbar flex min-h-0 flex-1 flex-col gap-2 overflow-y-auto px-2 py-2"
+        className="no-scrollbar flex min-h-0 flex-1 flex-col gap-2 overflow-y-auto px-0.5 py-0.5"
       >
         <div className="flex flex-col gap-1 rounded-md border border-border/60 bg-card/40 py-0">
           <button

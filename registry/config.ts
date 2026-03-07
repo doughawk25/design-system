@@ -75,7 +75,7 @@ export const designSystemConfigSchema = z
       )
       .default("neutral"),
     theme: z.enum(THEMES.map((t) => t.name) as [ThemeName, ...ThemeName[]]),
-    font: z.enum(fontValues).default("suisse"),
+    font: z.enum(fontValues).default("ibm-plex"),
     item: z.string().optional(),
     rtl: z.boolean().default(false),
     menuAccent: z
@@ -115,7 +115,7 @@ export const DEFAULT_CONFIG: DesignSystemConfig = {
   baseColor: "neutral",
   theme: "neutral",
   iconLibrary: "lucide",
-  font: "suisse",
+  font: "ibm-plex",
   item: "Item",
   rtl: false,
   menuAccent: "subtle",

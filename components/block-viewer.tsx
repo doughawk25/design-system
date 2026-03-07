@@ -269,7 +269,7 @@ function BlockViewerView({ styleName }: { styleName: Style["name"] }) {
         <div className="absolute inset-0 right-4 [background-image:radial-gradient(#d4d4d4_1px,transparent_1px)] [background-size:20px_20px] dark:[background-image:radial-gradient(#404040_1px,transparent_1px)]"></div>
         <ResizablePanelGroup
           orientation="horizontal"
-          className="after:bg-surface/50 relative z-10 after:absolute after:inset-0 after:right-3 after:z-0 after:rounded-xl"
+          className="after:bg-zinc-50/50 relative z-10 after:absolute after:inset-0 after:right-3 after:z-0 after:rounded-xl"
         >
           <ResizablePanel
             panelRef={resizablePanelRef}
@@ -340,7 +340,7 @@ function BlockViewerCode() {
   const language = file.path.split(".").pop() ?? "tsx"
 
   return (
-    <div className="bg-code text-code-foreground mr-[14px] flex overflow-hidden rounded-xl border group-data-[view=preview]/block-view-wrapper:hidden md:h-(--height)">
+    <div className="bg-zinc-100 text-zinc-950 mr-[14px] flex overflow-hidden rounded-xl border group-data-[view=preview]/block-view-wrapper:hidden md:h-(--height)">
       <div className="w-72">
         <BlockViewerFileTree />
       </div>
@@ -349,7 +349,7 @@ function BlockViewerCode() {
         className="!mx-0 mt-0 flex min-w-0 flex-1 flex-col rounded-xl border-none"
       >
         <figcaption
-          className="text-code-foreground [&_svg]:text-code-foreground flex h-12 shrink-0 items-center gap-2 border-b px-4 py-2 [&_svg]:size-4 [&_svg]:opacity-70"
+          className="text-zinc-950 [&_svg]:text-zinc-950 flex h-12 shrink-0 items-center gap-2 border-b px-4 py-2 [&_svg]:size-4 [&_svg]:opacity-70"
           data-language={language}
         >
           {getIconForLanguageExtension(language)}

@@ -201,7 +201,7 @@ function CustomizerCode({ themeName }: { themeName: string }) {
             className="!mx-0 mt-0 rounded-lg"
           >
             <figcaption
-              className="text-code-foreground [&_svg]:text-code-foreground flex items-center gap-2 [&_svg]:size-4 [&_svg]:opacity-70"
+              className="text-zinc-950 [&_svg]:text-zinc-950 flex items-center gap-2 [&_svg]:size-4 [&_svg]:opacity-70"
               data-rehype-pretty-code-title=""
               data-language="css"
               data-theme="github-dark github-light-default"
@@ -214,7 +214,7 @@ function CustomizerCode({ themeName }: { themeName: string }) {
                 data-slot="copy-button"
                 size="icon"
                 variant="ghost"
-                className="bg-code text-code-foreground absolute top-3 right-2 z-10 size-7 shadow-none hover:opacity-100 focus-visible:opacity-100"
+                className="bg-zinc-100 text-zinc-950 absolute top-3 right-2 z-10 size-7 shadow-none hover:opacity-100 focus-visible:opacity-100"
                 onClick={() => {
                   copyToClipboardWithMeta(
                     getThemeCodeOKLCH(activeThemeOKLCH, 0.65),
@@ -233,42 +233,42 @@ function CustomizerCode({ themeName }: { themeName: string }) {
                 {hasCopied ? <IconCheck /> : <IconCopy />}
               </Button>
               <code data-line-numbers data-language="css">
-                <span data-line className="line text-code-foreground">
+                <span data-line className="line text-zinc-950">
                   &nbsp;:root &#123;
                 </span>
-                <span data-line className="line text-code-foreground">
+                <span data-line className="line text-zinc-950">
                   &nbsp;&nbsp;&nbsp;--radius: 0.65rem;
                 </span>
                 {Object.entries(activeThemeOKLCH?.light).map(([key, value]) => (
                   <span
                     data-line
-                    className="line text-code-foreground"
+                    className="line text-zinc-950"
                     key={key}
                   >
                     &nbsp;&nbsp;&nbsp;--{key}: <ColorIndicator color={value} />{" "}
                     {value};
                   </span>
                 ))}
-                <span data-line className="line text-code-foreground">
+                <span data-line className="line text-zinc-950">
                   &nbsp;&#125;
                 </span>
-                <span data-line className="line text-code-foreground">
+                <span data-line className="line text-zinc-950">
                   &nbsp;
                 </span>
-                <span data-line className="line text-code-foreground">
+                <span data-line className="line text-zinc-950">
                   &nbsp;.dark &#123;
                 </span>
                 {Object.entries(activeThemeOKLCH?.dark).map(([key, value]) => (
                   <span
                     data-line
-                    className="line text-code-foreground"
+                    className="line text-zinc-950"
                     key={key}
                   >
                     &nbsp;&nbsp;&nbsp;--{key}: <ColorIndicator color={value} />{" "}
                     {value};
                   </span>
                 ))}
-                <span data-line className="line text-code-foreground">
+                <span data-line className="line text-zinc-950">
                   &nbsp;&#125;
                 </span>
               </code>
@@ -281,7 +281,7 @@ function CustomizerCode({ themeName }: { themeName: string }) {
             className="!mx-0 mt-0 rounded-lg"
           >
             <figcaption
-              className="text-code-foreground [&_svg]:text-code-foreground flex items-center gap-2 [&_svg]:size-4 [&_svg]:opacity-70"
+              className="text-zinc-950 [&_svg]:text-zinc-950 flex items-center gap-2 [&_svg]:size-4 [&_svg]:opacity-70"
               data-rehype-pretty-code-title=""
               data-language="css"
               data-theme="github-dark github-light-default"
@@ -294,7 +294,7 @@ function CustomizerCode({ themeName }: { themeName: string }) {
                 data-slot="copy-button"
                 size="icon"
                 variant="ghost"
-                className="bg-code text-code-foreground absolute top-3 right-2 z-10 size-7 shadow-none hover:opacity-100 focus-visible:opacity-100"
+                className="bg-zinc-100 text-zinc-950 absolute top-3 right-2 z-10 size-7 shadow-none hover:opacity-100 focus-visible:opacity-100"
                 onClick={() => {
                   copyToClipboardWithMeta(
                     getThemeCodeHSLV4(activeTheme, 0.65),
@@ -313,17 +313,17 @@ function CustomizerCode({ themeName }: { themeName: string }) {
                 {hasCopied ? <IconCheck /> : <IconCopy />}
               </Button>
               <code data-line-numbers data-language="css">
-                <span data-line className="line text-code-foreground">
+                <span data-line className="line text-zinc-950">
                   &nbsp;:root &#123;
                 </span>
-                <span data-line className="line text-code-foreground">
+                <span data-line className="line text-zinc-950">
                   &nbsp;&nbsp;&nbsp;--radius: 0.65rem;
                 </span>
                 {Object.entries(activeTheme?.cssVars.light || {}).map(
                   ([key, value]) => (
                     <span
                       data-line
-                      className="line text-code-foreground"
+                      className="line text-zinc-950"
                       key={key}
                     >
                       &nbsp;&nbsp;&nbsp;--{key}:{" "}
@@ -331,20 +331,20 @@ function CustomizerCode({ themeName }: { themeName: string }) {
                     </span>
                   )
                 )}
-                <span data-line className="line text-code-foreground">
+                <span data-line className="line text-zinc-950">
                   &nbsp;&#125;
                 </span>
-                <span data-line className="line text-code-foreground">
+                <span data-line className="line text-zinc-950">
                   &nbsp;
                 </span>
-                <span data-line className="line text-code-foreground">
+                <span data-line className="line text-zinc-950">
                   &nbsp;.dark &#123;
                 </span>
                 {Object.entries(activeTheme?.cssVars.dark || {}).map(
                   ([key, value]) => (
                     <span
                       data-line
-                      className="line text-code-foreground"
+                      className="line text-zinc-950"
                       key={key}
                     >
                       &nbsp;&nbsp;&nbsp;--{key}:{" "}
@@ -352,7 +352,7 @@ function CustomizerCode({ themeName }: { themeName: string }) {
                     </span>
                   )
                 )}
-                <span data-line className="line text-code-foreground">
+                <span data-line className="line text-zinc-950">
                   &nbsp;&#125;
                 </span>
               </code>
@@ -365,7 +365,7 @@ function CustomizerCode({ themeName }: { themeName: string }) {
             className="!mx-0 mt-0 rounded-lg"
           >
             <figcaption
-              className="text-code-foreground [&_svg]:text-code-foreground flex items-center gap-2 [&_svg]:size-4 [&_svg]:opacity-70"
+              className="text-zinc-950 [&_svg]:text-zinc-950 flex items-center gap-2 [&_svg]:size-4 [&_svg]:opacity-70"
               data-rehype-pretty-code-title=""
               data-language="css"
               data-theme="github-dark github-light-default"
@@ -378,7 +378,7 @@ function CustomizerCode({ themeName }: { themeName: string }) {
                 data-slot="copy-button"
                 size="icon"
                 variant="ghost"
-                className="bg-code text-code-foreground absolute top-3 right-2 z-10 size-7 shadow-none hover:opacity-100 focus-visible:opacity-100"
+                className="bg-zinc-100 text-zinc-950 absolute top-3 right-2 z-10 size-7 shadow-none hover:opacity-100 focus-visible:opacity-100"
                 onClick={() => {
                   copyToClipboardWithMeta(getThemeCode(activeTheme, 0.5), {
                     name: "copy_theme_code",
