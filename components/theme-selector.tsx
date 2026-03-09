@@ -23,7 +23,7 @@ export function ThemeSelector({ className }: React.ComponentProps<"div">) {
   const value = activeTheme === "default" ? "neutral" : activeTheme
 
   const items = THEMES.map((theme) => ({
-    label: theme.label,
+    label: theme.name.charAt(0).toUpperCase() + theme.name.slice(1),
     value: theme.name,
   }))
 
@@ -33,7 +33,6 @@ export function ThemeSelector({ className }: React.ComponentProps<"div">) {
         Theme
       </Label>
       <Select
-        items={items}
         value={value}
         onValueChange={(value) => value && setActiveTheme(value)}
       >

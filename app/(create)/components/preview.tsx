@@ -16,6 +16,7 @@ import {
 
 export function Preview() {
   const [params] = useDesignSystemSearchParams()
+  const [tokenOverrides] = useTokenOverrides()
   const iframeRef = React.useRef<HTMLIFrameElement>(null)
   const resizablePanelRef = React.useRef<PanelImperativeHandle>(null)
 
@@ -55,13 +56,6 @@ export function Preview() {
       iframe.removeEventListener("load", onLoad)
     }
   }, [params, tokenOverrides])
-
-  const [tokenOverrides] = useTokenOverrides()
-  React.useEffect(() => {
-    const iframe = iframeRef.current
-    if (!iframe?.contentWindow) return
-    sendToIframe(iframe, "token-overrides", tokenOverrides)
-  }, [tokenOverrides])
 
   const handleMessage = (event: MessageEvent) => {
     if (event.data.type === CMD_K_FORWARD_TYPE) {

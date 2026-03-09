@@ -8,8 +8,6 @@ import {
   type ReactNode,
 } from "react"
 
-import { withThemeTransition } from "@/lib/theme-transition"
-
 const DEFAULT_THEME = "default"
 
 type ThemeContextType = {
@@ -31,17 +29,15 @@ export function ActiveThemeProvider({
   )
 
   useEffect(() => {
-    withThemeTransition(() => {
-      Array.from(document.body.classList)
-        .filter((className) => className.startsWith("theme-"))
-        .forEach((className) => {
-          document.body.classList.remove(className)
-        })
-      document.body.classList.add(`theme-${activeTheme}`)
-      if (activeTheme.endsWith("-scaled")) {
-        document.body.classList.add("theme-scaled")
-      }
-    })
+    Array.from(document.body.classList)
+      .filter((className) => className.startsWith("theme-"))
+      .forEach((className) => {
+        document.body.classList.remove(className)
+      })
+    document.body.classList.add(`theme-${activeTheme}`)
+    if (activeTheme.endsWith("-scaled")) {
+      document.body.classList.add("theme-scaled")
+    }
   }, [activeTheme])
 
   return (

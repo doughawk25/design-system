@@ -39,9 +39,6 @@ export function UiShowcaseRightNav() {
             </Button>
           )}
         </div>
-        <div className="flex shrink-0 items-center justify-center">
-          <ThemeShortcutListener />
-        </div>
       </div>
     </aside>
   )

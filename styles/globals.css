@@ -241,30 +241,7 @@
   color: var(--primary);
 }
 
-/* Unified theme transition: theme-sensitive properties only. Uses !important so component
-   transition-colors/transition-all do not override; text, borders, and surfaces stay in sync. */
-html,
-body {
-  transition-property: background-color, color, border-color, fill, stroke, box-shadow;
-  transition-duration: var(--theme-transition-duration);
-  transition-timing-function: var(--theme-transition-easing);
-}
 
-*,
-*::before,
-*::after {
-  transition-property: background-color, color, border-color, fill, stroke, box-shadow;
-  transition-duration: var(--theme-transition-duration) !important;
-  transition-timing-function: var(--theme-transition-easing) !important;
-}
-
-/* During theme switch, force all elements to transition theme-sensitive properties,
-   overriding any component-level transition-property (e.g. transition-[width], transition-none). */
-html[data-theme-switching] *,
-html[data-theme-switching] *::before,
-html[data-theme-switching] *::after {
-  transition-property: background-color, color, border-color, fill, stroke, box-shadow !important;
-}
 
 @layer base {
   * {

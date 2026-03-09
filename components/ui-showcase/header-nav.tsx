@@ -52,7 +52,6 @@ export function UiShowcaseHeaderNav() {
           </Button>
         )}
       </motion.div>
-      <ThemeShortcutListener />
     </motion.header>
   )
 }

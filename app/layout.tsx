@@ -9,6 +9,7 @@ import { ActiveThemeProvider } from "@/components/active-theme"
 import { Analytics } from "@/components/analytics"
 import { TailwindIndicator } from "@/components/tailwind-indicator"
 import { ThemeProvider } from "@/components/theme-provider"
+import { ThemeShortcutListener } from "@/components/mode-switcher"
 import { TooltipProvider as BaseTooltipProvider } from "@/registry/bases/base/ui/tooltip"
 import { Toaster } from "@/registry/bases/radix/ui/sonner"
 import { TooltipProvider as RadixTooltipProvider } from "@/registry/bases/radix/ui/tooltip"
@@ -98,6 +99,7 @@ export default function RootLayout({
         )}
       >
         <ThemeProvider>
+          <ThemeShortcutListener />
           <LayoutProvider>
             <ActiveThemeProvider>
               <NuqsAdapter>
