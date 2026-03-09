@@ -26,7 +26,7 @@ export function StylesShowcase() {
           {SHADOW_TOKENS.map(({ name, class: c }) => (
             <div
               key={name}
-              className={`flex flex-col gap-2 rounded-lg border border-border bg-card p-4 ${c}`}
+              className={`flex flex-col gap-2 rounded-[6px] border border-border bg-card p-4 ${c}`}
             >
               <div className="bg-muted/50 h-20 rounded-md" />
               <span className="text-muted-foreground font-mono text-xs">
@@ -46,7 +46,7 @@ export function StylesShowcase() {
           {BLUR_TOKENS.map(({ name, class: c }) => (
             <div
               key={name}
-              className={`relative flex h-20 items-center justify-center overflow-hidden rounded-lg border border-border/60 ${c}`}
+              className={`relative flex h-20 items-center justify-center overflow-hidden rounded-[6px] border border-border/60 ${c}`}
             >
               <span className="text-muted-foreground font-mono text-xs">
                 {name}

@@ -11,6 +11,7 @@ import { Separator } from "@/registry/new-york-v4/ui/separator"
 import { MenuAccentPicker } from "@/app/(create)/components/accent-picker"
 import { BaseColorPicker } from "@/app/(create)/components/base-color-picker"
 import { BasePicker } from "@/app/(create)/components/base-picker"
+import { ComponentTokenPanel } from "@/app/(create)/components/component-token-panel"
 import { FontPicker } from "@/app/(create)/components/font-picker"
 import { IconLibraryPicker } from "@/app/(create)/components/icon-library-picker"
 import { MenuColorPicker } from "@/app/(create)/components/menu-picker"
@@ -57,6 +58,7 @@ export function Customizer() {
             isMobile={isMobile}
             anchorRef={anchorRef}
           />
+          <ComponentTokenPanel isMobile={isMobile} anchorRef={anchorRef} />
           <IconLibraryPicker isMobile={isMobile} anchorRef={anchorRef} />
           <FontPicker fonts={FONTS} isMobile={isMobile} anchorRef={anchorRef} />
           <RadiusPicker isMobile={isMobile} anchorRef={anchorRef} />

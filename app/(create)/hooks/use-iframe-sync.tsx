@@ -4,10 +4,11 @@ import * as React from "react"
 
 import type { DesignSystemSearchParams } from "@/app/(create)/lib/search-params"
 
-type ParentToIframeMessage = {
-  type: "design-system-params"
-  data: DesignSystemSearchParams
-}
+export type TokenOverrides = Record<string, string>
+
+type ParentToIframeMessage =
+  | { type: "design-system-params"; data: DesignSystemSearchParams }
+  | { type: "token-overrides"; data: TokenOverrides }
 
 export const isInIframe = () => {
   if (typeof window === "undefined") {

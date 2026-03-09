@@ -57,7 +57,10 @@ export function ThemeCustomizer({ className }: React.ComponentProps<"div">) {
   const { activeTheme = "neutral", setActiveTheme } = useThemeConfig()
 
   return (
-    <div className={cn("flex w-full items-center gap-2", className)}>
+    <div
+      className={cn("flex w-full items-center gap-2", className)}
+      data-slot="theme-switcher"
+    >
       <ScrollArea className="hidden max-w-[96%] md:max-w-[600px] lg:flex lg:max-w-none">
         <div className="flex items-center">
           {THEMES.map((theme) => (
@@ -66,7 +69,7 @@ export function ThemeCustomizer({ className }: React.ComponentProps<"div">) {
               variant="link"
               size="sm"
               data-active={activeTheme === theme.name}
-              className="text-muted-foreground hover:text-primary data-[active=true]:text-primary flex h-7 cursor-pointer items-center justify-center px-4 text-center text-base font-medium capitalize transition-colors hover:no-underline"
+              className="text-primary hover:text-primary/80 data-[active=true]:font-semibold data-[active=true]:underline flex h-7 cursor-pointer items-center justify-center px-4 text-center text-base font-medium capitalize transition-colors hover:no-underline"
               onClick={() => setActiveTheme(theme.name)}
             >
               {theme.name === "neutral" ? "Default" : theme.name}
@@ -86,7 +89,7 @@ export function ThemeCustomizer({ className }: React.ComponentProps<"div">) {
           <SelectTrigger
             id="theme-selector"
             size="sm"
-            className="justify-start capitalize shadow-none *:data-[slot=select-value]:w-12 *:data-[slot=select-value]:capitalize"
+            className="text-primary [&_span]:text-primary justify-start capitalize shadow-none *:data-[slot=select-value]:w-12 *:data-[slot=select-value]:capitalize"
           >
             <span className="font-medium">Theme:</span>
             <SelectValue placeholder="Select a theme" />

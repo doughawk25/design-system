@@ -1,17 +1,17 @@
 import { H1, H2, H3, H4, P, Lead, Large, Small, Muted, InlineCode } from "@/components/ui/typography"
 import { Badge } from "@/components/ui/badge"
+import { UiShowcaseSectionHeader } from "@/components/ui-showcase/section-header"
+import { getUiShowcaseSectionPageNumber } from "@/lib/ui-showcase-config"
 
 export default function TypographyShowcasePage() {
+  const pageNumber = getUiShowcaseSectionPageNumber("/ui/typography")
   return (
     <div className="flex flex-col gap-10 w-full [&_div.flex.items-start.justify-between>*:first-child]:-mt-[0.35em]">
-      <header className="flex flex-col gap-3">
-        <h1 className="scroll-m-20 text-4xl font-bold tracking-tight text-balance">
-          Type
-        </h1>
-        <p className="text-muted-foreground max-w-xl text-sm">
-          Typography styles for headings, body text, and UI elements.
-        </p>
-      </header>
+      <UiShowcaseSectionHeader
+        title="Type"
+        description="Typography styles for headings, body text, and UI elements."
+        pageNumber={pageNumber}
+      />
       <section className="flex flex-col gap-6">
         <div className="flex items-start justify-between gap-4">
           <H1 className="mt-0">Taxing Laughter: The Joke Tax Chronicles</H1>

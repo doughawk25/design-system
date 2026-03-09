@@ -24,6 +24,16 @@
 @custom-variant dark (&:is(.dark *));
 @custom-variant fixed (&:is(.layout-fixed *));
 
+/* Motion: fade-in animation for content entry */
+@keyframes motion-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 @theme inline {
   --breakpoint-3xl: 1600px;
   --breakpoint-4xl: 2000px;
@@ -77,11 +87,24 @@
   --color-selection: var(--selection);
   --color-selection-foreground: var(--selection-foreground);
   --color-raised: var(--raised);
+  /* Button semantic tokens */
+  --color-button-default: var(--button-default);
+  --color-button-default-foreground: var(--button-default-foreground);
+  --color-button-default-hover: var(--button-default-hover);
+  --color-button-default-hover-foreground: var(--button-default-hover-foreground);
+  --color-button-secondary: var(--button-secondary);
+  --color-button-secondary-foreground: var(--button-secondary-foreground);
+  --color-button-destructive: var(--button-destructive);
+  --color-button-destructive-foreground: var(--button-destructive-foreground);
+  --color-button-outline: var(--button-outline);
+  --color-button-outline-hover: var(--button-outline-hover);
+  --color-button-ghost-hover: var(--button-ghost-hover);
+  --color-button-link: var(--button-link);
 }
 
 :root {
   --radius: calc(0.5rem - 2px);
-  --background: var(--color-white);
+  --background: var(--color-gray-100);
   --foreground: var(--color-zinc-950);
   --card: var(--color-white);
   --card-foreground: var(--color-zinc-950);
@@ -123,6 +146,26 @@
   --selection: var(--color-zinc-200);
   --selection-foreground: var(--color-zinc-950);
   --raised: var(--color-white);
+  /* Button semantic tokens */
+  --button-default: var(--color-zinc-900);
+  --button-default-foreground: var(--color-zinc-50);
+  --button-default-hover: var(--color-yellow-300);
+  --button-default-hover-foreground: var(--color-zinc-900);
+  --button-secondary: var(--color-zinc-100);
+  --button-secondary-foreground: var(--color-zinc-900);
+  --button-destructive: var(--color-red-600);
+  --button-destructive-foreground: var(--color-red-50);
+  --button-outline: var(--color-zinc-200);
+  --button-outline-hover: var(--color-zinc-100);
+  --button-ghost-hover: var(--color-zinc-100);
+  --button-link: var(--color-zinc-900);
+  /* Theme transition: set --theme-transition-duration to control theme switch speed. Presets: instant 0ms, fast 120ms, normal 180ms, slow 260ms. */
+  --theme-transition-duration-instant: 0ms;
+  --theme-transition-duration-fast: 120ms;
+  --theme-transition-duration-normal: 180ms;
+  --theme-transition-duration-slow: 260ms;
+  --theme-transition-duration: var(--theme-transition-duration-normal);
+  --theme-transition-easing: ease;
 }
 
 .dark {
@@ -168,6 +211,59 @@
   --selection: var(--color-zinc-700);
   --selection-foreground: var(--color-zinc-50);
   --raised: var(--color-zinc-800);
+  /* Button semantic tokens */
+  --button-default: var(--color-zinc-50);
+  --button-default-foreground: var(--color-zinc-900);
+  --button-default-hover: var(--color-yellow-400);
+  --button-default-hover-foreground: var(--color-zinc-950);
+  --button-secondary: var(--color-zinc-800);
+  --button-secondary-foreground: var(--color-zinc-50);
+  --button-destructive: var(--color-red-500);
+  --button-destructive-foreground: var(--color-red-50);
+  --button-outline: var(--color-zinc-800);
+  --button-outline-hover: var(--color-zinc-800);
+  --button-ghost-hover: var(--color-zinc-800);
+  --button-link: var(--color-zinc-50);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --theme-transition-duration: var(--theme-transition-duration-instant);
+  }
+}
+
+/* Theme switcher: always use active (primary) color treatment in both light and dark */
+[data-slot="theme-switcher"] {
+  color: var(--primary);
+}
+[data-slot="theme-switcher"] button,
+[data-slot="theme-switcher"] [data-slot="select-trigger"] {
+  color: var(--primary);
+}
+
+/* Unified theme transition: theme-sensitive properties only. Uses !important so component
+   transition-colors/transition-all do not override; text, borders, and surfaces stay in sync. */
+html,
+body {
+  transition-property: background-color, color, border-color, fill, stroke, box-shadow;
+  transition-duration: var(--theme-transition-duration);
+  transition-timing-function: var(--theme-transition-easing);
+}
+
+*,
+*::before,
+*::after {
+  transition-property: background-color, color, border-color, fill, stroke, box-shadow;
+  transition-duration: var(--theme-transition-duration) !important;
+  transition-timing-function: var(--theme-transition-easing) !important;
+}
+
+/* During theme switch, force all elements to transition theme-sensitive properties,
+   overriding any component-level transition-property (e.g. transition-[width], transition-none). */
+html[data-theme-switching] *,
+html[data-theme-switching] *::before,
+html[data-theme-switching] *::after {
+  transition-property: background-color, color, border-color, fill, stroke, box-shadow !important;
 }
 
 @layer base {
@@ -183,6 +279,11 @@
   body {
     font-synthesis-weight: none;
     text-rendering: optimizeLegibility;
+  }
+
+  /* Mono font for all numeric display (elements using tabular-nums) */
+  .tabular-nums {
+    font-family: var(--font-mono), ui-monospace, monospace;
   }
 
   h1,
@@ -279,6 +380,23 @@
 }
 
 @layer components {
+  /** Opt-in theme transition for theme-sensitive properties. Global theme transition is already applied via *; use this to re-apply on elements that need it (e.g. inside a scope that resets transition). */
+  .theme-transition {
+    transition-property: background-color, color, border-color, fill, stroke, box-shadow;
+    transition-duration: var(--theme-transition-duration);
+    transition-timing-function: var(--theme-transition-easing);
+  }
+
+  /** Reusable fade-in motion style. Use class "motion-fade-in" for content entry. */
+  .motion-fade-in {
+    animation: motion-fade-in 0.3s ease-out forwards;
+  }
+
+  /** Fade-in with same profile as left nav link hover (888ms ease-in-out). */
+  .motion-fade-in-nav {
+    animation: motion-fade-in 888ms ease-in-out forwards;
+  }
+
   .steps {
     &:first-child {
       @apply !mt-0;

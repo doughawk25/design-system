@@ -359,6 +359,114 @@ export const examples: Registry["items"] = [
     ],
   },
   {
+    name: "grid-plain-example",
+    title: "Grid (plain)",
+    type: "registry:example",
+    registryDependencies: ["grid", "example"],
+    files: [
+      {
+        path: "examples/grid-plain-example.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "grid-basic-example",
+    title: "Grid (basic)",
+    type: "registry:example",
+    registryDependencies: ["grid", "example"],
+    files: [
+      {
+        path: "examples/grid-basic-example.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "grid-solid-example",
+    title: "Grid (solid cells)",
+    type: "registry:example",
+    registryDependencies: ["grid", "example"],
+    files: [
+      {
+        path: "examples/grid-solid-example.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "grid-responsive-example",
+    title: "Grid (responsive)",
+    type: "registry:example",
+    registryDependencies: ["grid", "example"],
+    files: [
+      {
+        path: "examples/grid-responsive-example.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "grid-responsive-clipped-example",
+    title: "Grid (responsive clipped)",
+    type: "registry:example",
+    registryDependencies: ["grid", "example"],
+    files: [
+      {
+        path: "examples/grid-responsive-clipped-example.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "grid-hidden-row-guides-example",
+    title: "Grid (hidden row guides)",
+    type: "registry:example",
+    registryDependencies: ["grid", "example"],
+    files: [
+      {
+        path: "examples/grid-hidden-row-guides-example.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "grid-hidden-column-guides-example",
+    title: "Grid (hidden column guides)",
+    type: "registry:example",
+    registryDependencies: ["grid", "example"],
+    files: [
+      {
+        path: "examples/grid-hidden-column-guides-example.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "grid-overlaying-example",
+    title: "Grid (overlaying cells)",
+    type: "registry:example",
+    registryDependencies: ["grid", "example"],
+    files: [
+      {
+        path: "examples/grid-overlaying-example.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "grid-specific-clipping-example",
+    title: "Grid (specific clipping)",
+    type: "registry:example",
+    registryDependencies: ["grid", "example"],
+    files: [
+      {
+        path: "examples/grid-specific-clipping-example.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
     name: "hover-card-example",
     title: "Hover Card",
     type: "registry:example",

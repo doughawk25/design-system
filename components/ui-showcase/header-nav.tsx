@@ -2,23 +2,37 @@
 
 import Link from "next/link"
 import { usePathname, useRouter } from "next/navigation"
+import { motion } from "motion/react"
 import { X } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
-import { MarkMonoIcon } from "@/components/ui-showcase/mark-mono-icon"
 import { ModeSwitcher, ThemeShortcutListener } from "@/components/mode-switcher"
+
+const ROTATE_EASING = "cubic-bezier(0.4, 0, 0.2, 1)"
+const ROTATE_DURATION_MS = 220
+const NAV_TRANSITION = { type: "spring", stiffness: 300, damping: 30 }
 
 export function UiShowcaseHeaderNav() {
   const pathname = usePathname()
   const router = useRouter()
   const isHome = pathname === "/ui"
 
+  // X at 0° = close; X rotated -45° = plus (open home)
+  const iconStyle = {
+    transform: isHome ? "rotate(0deg)" : "rotate(-45deg)",
+    transition: `transform ${ROTATE_DURATION_MS}ms ${ROTATE_EASING}`,
+  }
+
   return (
-    <header
-      className="border-border surface-blur-strong relative z-10 flex items-center justify-between gap-4 rounded-lg border px-0.5 py-0.5 shadow-sm"
+    <motion.header
+      layout
+      transition={NAV_TRANSITION}
+      className="border-border/60 bg-card/40 relative z-10 flex w-fit items-center gap-2 rounded-[64px] border pl-2.5 pr-0.5 py-0.5"
+      style={{ width: "fit-content" }}
       aria-label="Main navigation"
     >
-      <div className="flex items-center gap-2">
+      <ModeSwitcher />
+      <motion.div layout transition={NAV_TRANSITION} className="flex shrink-0 items-center justify-center">
         {isHome ? (
           <Button
             type="button"
@@ -26,22 +40,19 @@ export function UiShowcaseHeaderNav() {
             size="icon"
             onClick={() => router.back()}
             aria-label="Close and go back"
-            className="size-9 shrink-0"
+            className="size-9 shrink-0 rounded-[64px]"
           >
-            <X className="size-5" />
+            <X className="size-5 shrink-0" style={iconStyle} aria-hidden />
           </Button>
         ) : (
-          <Button variant="outline" size="icon" className="size-9 shrink-0" asChild aria-label="Open home">
-            <Link href="/ui" className="flex size-9 items-center justify-center">
-              <MarkMonoIcon className="size-5 w-5 shrink-0" />
+          <Button variant="outline" size="icon" className="size-9 shrink-0 rounded-[64px]" asChild aria-label="Open home">
+            <Link href="/ui" className="flex size-9 items-center justify-center rounded-[64px]">
+              <X className="size-5 shrink-0" style={iconStyle} aria-hidden />
             </Link>
           </Button>
         )}
-      </div>
-      <div className="flex items-center gap-2">
-        <ModeSwitcher />
-        <ThemeShortcutListener />
-      </div>
-    </header>
+      </motion.div>
+      <ThemeShortcutListener />
+    </motion.header>
   )
 }

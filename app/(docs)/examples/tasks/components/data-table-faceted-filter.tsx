@@ -108,7 +108,7 @@ export function DataTableFacetedFilter<TData, TValue>({
                         "flex size-4 items-center justify-center rounded-[4px] border",
                         isSelected
                           ? "bg-primary border-primary text-primary-foreground"
-                          : "border-input [&_svg]:invisible"
+                          : "border-border [&_svg]:invisible"
                       )}
                     >
                       <Check className="text-primary-foreground size-3.5" />

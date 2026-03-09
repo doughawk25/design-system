@@ -8,6 +8,7 @@ import { Badge } from "@/registry/new-york-v4/ui/badge"
 import { CMD_K_FORWARD_TYPE } from "@/app/(create)/components/item-picker"
 import { RANDOMIZE_FORWARD_TYPE } from "@/app/(create)/components/random-button"
 import { sendToIframe } from "@/app/(create)/hooks/use-iframe-sync"
+import { useTokenOverrides } from "@/app/(create)/components/token-overrides-provider"
 import {
   serializeDesignSystemSearchParams,
   useDesignSystemSearchParams,
@@ -34,16 +35,33 @@ export function Preview() {
     const sendParams = () => {
       sendToIframe(iframe, "design-system-params", params)
     }
+    const sendTokenOverrides = () => {
+      sendToIframe(iframe, "token-overrides", tokenOverrides)
+    }
+    const onLoad = () => {
+      sendParams()
+      sendTokenOverrides()
+    }
 
     if (iframe.contentWindow) {
       sendParams()
+      sendTokenOverrides()
     }
+    // Send token overrides whenever they change (effect runs on tokenOverrides change).
+    sendTokenOverrides()
 
-    iframe.addEventListener("load", sendParams)
+    iframe.addEventListener("load", onLoad)
     return () => {
-      iframe.removeEventListener("load", sendParams)
+      iframe.removeEventListener("load", onLoad)
     }
-  }, [params])
+  }, [params, tokenOverrides])
+
+  const [tokenOverrides] = useTokenOverrides()
+  React.useEffect(() => {
+    const iframe = iframeRef.current
+    if (!iframe?.contentWindow) return
+    sendToIframe(iframe, "token-overrides", tokenOverrides)
+  }, [tokenOverrides])
 
   const handleMessage = (event: MessageEvent) => {
     if (event.data.type === CMD_K_FORWARD_TYPE) {
@@ -105,7 +123,7 @@ export function Preview() {
 
   return (
     <div className="relative -mx-1 flex flex-1 flex-col justify-center sm:mx-0">
-      <div className="ring-foreground/15 3xl:max-h-[1200px] 3xl:max-w-[1800px] relative -z-0 mx-auto flex w-full flex-1 flex-col overflow-hidden rounded-2xl ring-1">
+      <div className="ring-border 3xl:max-h-[1200px] 3xl:max-w-[1800px] relative -z-0 mx-auto flex w-full flex-1 flex-col overflow-hidden rounded-2xl ring-1">
         <div className="bg-muted dark:bg-muted/30 absolute inset-0 rounded-2xl" />
         <iframe
           key={params.base + params.item}

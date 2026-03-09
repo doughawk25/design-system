@@ -1,0 +1,108 @@
+---
+title: Grid
+description: Display elements in a grid layout with optional guides, solid cells, and clipping.
+base: base
+component: true
+---
+
+Lay out content in a grid with optional row and column guides. Use `Grid` and `GridCell` to build layouts that match the same conceptual patterns as the Geist grid: plain grid, basic cells, solid cells that occlude guides, responsive layouts, hidden row or column guides, overlaying cells, and guide clipping on specific cells.
+
+## Plain grid
+
+A non-responsive grid with no cells—only the guide lines.
+
+<ComponentPreview styleName="base-nova" name="grid-plain-example" />
+
+## Basic grid
+
+A single grid with auto-flowing cells.
+
+<ComponentPreview styleName="base-nova" name="grid-basic-example" />
+
+## Solid cells
+
+Using the `solid` prop on cells occludes the guides that the cell overlaps.
+
+<ComponentPreview styleName="base-nova" name="grid-solid-example" />
+
+## Responsive grid
+
+Grid with fixed columns and rows. Use Tailwind breakpoint classes on the container or pass custom `columns`/`rows` for different layouts.
+
+<ComponentPreview styleName="base-nova" name="grid-responsive-example" />
+
+## Responsive grid with clipped guides
+
+Grid with responsive columns and rows and guide clipping on specific cells (e.g. merged cells).
+
+<ComponentPreview styleName="base-nova" name="grid-responsive-clipped-example" />
+
+## Grid with hidden row guides
+
+Only column guides are visible.
+
+<ComponentPreview styleName="base-nova" name="grid-hidden-row-guides-example" />
+
+## Grid with hidden column guides
+
+Only row guides are visible.
+
+<ComponentPreview styleName="base-nova" name="grid-hidden-column-guides-example" />
+
+## Grid with overlaying cells
+
+Cells that overlay others using the `overlay` prop and higher z-index.
+
+<ComponentPreview styleName="base-nova" name="grid-overlaying-example" />
+
+## Specific guide clipping
+
+Guide clipping enabled on specific cells with the `clipGuides` prop.
+
+<ComponentPreview styleName="base-nova" name="grid-specific-clipping-example" />
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+<TabsContent value="manual">
+
+<Steps className="mb-0 pt-2">
+
+<Step>Copy the Grid component into your project.</Step>
+
+<ComponentSource
+  name="grid"
+  title="components/ui/grid.tsx"
+  styleName="base-nova"
+/>
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## Usage
+
+```tsx showLineNumbers
+import { Grid, GridCell } from "@/components/ui/grid"
+```
+
+```tsx showLineNumbers
+<Grid columns={3} rows={2} gap={8}>
+  <GridCell>1</GridCell>
+  <GridCell solid>2</GridCell>
+  <GridCell column={1} row={2} colSpan={2} clipGuides>3</GridCell>
+</Grid>
+```
+
+## API
+
+- **Grid**: `columns`, `rows` (number or CSS template string), `gap`, `showRowGuides`, `showColumnGuides`, `minHeight`.
+- **GridCell**: `column`, `row`, `colSpan`, `rowSpan`, `solid`, `overlay`, `clipGuides`.

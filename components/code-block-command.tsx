@@ -88,7 +88,7 @@ export function CodeBlockCommand({
                 <TabsTrigger
                   key={key}
                   value={key}
-                  className="data-[state=active]:bg-background! data-[state=active]:border-input h-7 border border-transparent pt-0.5 shadow-none!"
+                  className="data-[state=active]:bg-background! data-[state=active]:border-border h-7 border border-transparent pt-0.5 shadow-none!"
                 >
                   {key}
                 </TabsTrigger>

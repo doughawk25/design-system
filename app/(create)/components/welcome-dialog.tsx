@@ -2,7 +2,6 @@
 
 import * as React from "react"
 
-import { Icons } from "@/components/icons"
 import { Button } from "@/registry/new-york-v4/ui/button"
 import {
   Dialog,
@@ -41,7 +40,7 @@ export function WelcomeDialog() {
       >
         <div className="flex aspect-[2/1.2] w-full items-center justify-center rounded-t-xl bg-neutral-950 text-center text-neutral-100 sm:aspect-[2/1]">
           <div className="font-mono text-2xl font-bold">
-            <Icons.logo className="size-12" />
+            Build your own
           </div>
         </div>
         <DialogHeader className="gap-1 p-4">

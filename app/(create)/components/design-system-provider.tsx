@@ -24,6 +24,10 @@ export function DesignSystemProvider({
     history: "replace", // …or push updates into the iframe history.
   })
   useIframeMessageListener("design-system-params", setSearchParams)
+  const [tokenOverrides, setTokenOverrides] = React.useState<
+    Record<string, string>
+  >({})
+  useIframeMessageListener("token-overrides", setTokenOverrides)
   const [isReady, setIsReady] = React.useState(false)
 
   // Use useLayoutEffect for synchronous style updates to prevent flash.
@@ -130,6 +134,36 @@ export function DesignSystemProvider({
 
     styleElement.textContent = cssText
   }, [registryTheme])
+
+  // Apply component token overrides (from parent page) at system level.
+  React.useLayoutEffect(() => {
+    const styleId = "component-token-overrides"
+    let styleElement = document.getElementById(
+      styleId
+    ) as HTMLStyleElement | null
+
+    if (!styleElement) {
+      styleElement = document.createElement("style")
+      styleElement.id = styleId
+      document.head.appendChild(styleElement)
+    }
+
+    const entries = Object.entries(tokenOverrides).filter(
+      ([_, value]) => value != null && String(value).trim() !== ""
+    )
+    if (entries.length === 0) {
+      styleElement.textContent = ""
+      return
+    }
+
+    let cssText = ":root {\n"
+    entries.forEach(([key, value]) => {
+      const varName = key.startsWith("--") ? key : `--${key}`
+      cssText += `  ${varName}: ${value};\n`
+    })
+    cssText += "}\n"
+    styleElement.textContent = cssText
+  }, [tokenOverrides])
 
   // Handle menu color inversion by adding/removing dark class to elements with cn-menu-target.
   React.useEffect(() => {

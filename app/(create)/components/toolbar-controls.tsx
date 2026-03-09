@@ -244,7 +244,7 @@ export function ToolbarControls() {
             className="bg-zinc-50 min-w-0 gap-0 overflow-hidden rounded-lg border"
           >
             <div className="flex items-center gap-2 p-2">
-              <TabsList className="*:data-[slot=tabs-trigger]:data-[state=active]:border-input h-auto rounded-none bg-transparent p-0 font-mono group-data-[orientation=horizontal]/tabs:h-8 *:data-[slot=tabs-trigger]:h-7 *:data-[slot=tabs-trigger]:border *:data-[slot=tabs-trigger]:border-transparent *:data-[slot=tabs-trigger]:pt-0.5 *:data-[slot=tabs-trigger]:shadow-none!">
+              <TabsList className="*:data-[slot=tabs-trigger]:data-[state=active]:border-border h-auto rounded-none bg-transparent p-0 font-mono group-data-[orientation=horizontal]/tabs:h-8 *:data-[slot=tabs-trigger]:h-7 *:data-[slot=tabs-trigger]:border *:data-[slot=tabs-trigger]:border-transparent *:data-[slot=tabs-trigger]:pt-0.5 *:data-[slot=tabs-trigger]:shadow-none!">
                 <TabsTrigger value="pnpm">pnpm</TabsTrigger>
                 <TabsTrigger value="npm">npm</TabsTrigger>
                 <TabsTrigger value="yarn">yarn</TabsTrigger>

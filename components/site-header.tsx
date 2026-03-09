@@ -7,7 +7,6 @@ import { siteConfig } from "@/lib/config"
 import { source } from "@/lib/source"
 import { CommandMenu } from "@/components/command-menu"
 import { GitHubLink } from "@/components/github-link"
-import { Icons } from "@/components/icons"
 import { MainNav } from "@/components/main-nav"
 import { MobileNav } from "@/components/mobile-nav"
 import { ModeSwitcher } from "@/components/mode-switcher"
@@ -27,12 +26,11 @@ export function SiteHeader() {
           <Button
             asChild
             variant="ghost"
-            size="icon"
-            className="hidden size-8 lg:flex"
+            size="sm"
+            className="hidden lg:flex"
           >
             <Link href="/">
-              <Icons.logo className="size-5" />
-              <span className="sr-only">{siteConfig.name}</span>
+              {siteConfig.name}
             </Link>
           </Button>
           <MainNav items={siteConfig.navItems} className="hidden lg:flex" />
@@ -57,14 +55,14 @@ export function SiteHeader() {
             <Button
               asChild
               size="sm"
-              className="hidden h-[31px] rounded-lg sm:flex"
+              className="hidden h-[31px] !rounded-[64px] sm:flex"
             >
               <Link href="/create">
                 <HugeiconsIcon icon={PlusSignIcon} />
                 New Project
               </Link>
             </Button>
-            <Button asChild size="sm" className="h-[31px] rounded-lg sm:hidden">
+            <Button asChild size="sm" className="h-[31px] !rounded-[64px] sm:hidden">
               <Link href="/create">
                 <HugeiconsIcon icon={PlusSignIcon} />
                 New

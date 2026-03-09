@@ -599,7 +599,7 @@ function PrivacySettings() {
                   id="everyone-f8k"
                   className="sr-only"
                 />
-                <IconCircle className="stroke-input size-5 stroke-1 group-has-data-[state=checked]/field:hidden" />
+                <IconCircle className="stroke-border size-5 stroke-1 group-has-data-[state=checked]/field:hidden" />
                 <IconCircleCheckFilled className="fill-primary hidden size-5 group-has-data-[state=checked]/field:block" />
               </Field>
             </FieldLabel>
@@ -616,7 +616,7 @@ function PrivacySettings() {
                   id="followers-s7m"
                   className="sr-only"
                 />
-                <IconCircle className="stroke-input size-5 stroke-1 group-has-data-[state=checked]/field:hidden" />
+                <IconCircle className="stroke-border size-5 stroke-1 group-has-data-[state=checked]/field:hidden" />
                 <IconCircleCheckFilled className="fill-primary hidden size-5 group-has-data-[state=checked]/field:block" />
               </Field>
             </FieldLabel>
@@ -633,7 +633,7 @@ function PrivacySettings() {
                   id="custom-q3r"
                   className="sr-only"
                 />
-                <IconCircle className="stroke-input size-5 stroke-1 group-has-data-[state=checked]/field:hidden" />
+                <IconCircle className="stroke-border size-5 stroke-1 group-has-data-[state=checked]/field:hidden" />
                 <IconCircleCheckFilled className="fill-primary hidden size-5 group-has-data-[state=checked]/field:block" />
               </Field>
             </FieldLabel>
@@ -713,7 +713,7 @@ function PrivacySettings() {
                   id="everyone-3-k4p"
                   className="sr-only"
                 />
-                <IconCircle className="stroke-input size-5 stroke-1 group-has-data-[state=checked]/field:hidden" />
+                <IconCircle className="stroke-border size-5 stroke-1 group-has-data-[state=checked]/field:hidden" />
                 <IconCircleCheckFilled className="fill-primary hidden size-5 group-has-data-[state=checked]/field:block" />
               </Field>
             </FieldLabel>
@@ -733,7 +733,7 @@ function PrivacySettings() {
                   id="followers-3-m7j"
                   className="sr-only"
                 />
-                <IconCircle className="stroke-input size-5 stroke-1 group-has-data-[state=checked]/field:hidden" />
+                <IconCircle className="stroke-border size-5 stroke-1 group-has-data-[state=checked]/field:hidden" />
                 <IconCircleCheckFilled className="fill-primary hidden size-5 group-has-data-[state=checked]/field:block" />
               </Field>
             </FieldLabel>
@@ -753,7 +753,7 @@ function PrivacySettings() {
                   id="custom-3-r9w"
                   className="sr-only"
                 />
-                <IconCircle className="stroke-input size-5 stroke-1 group-has-data-[state=checked]/field:hidden" />
+                <IconCircle className="stroke-border size-5 stroke-1 group-has-data-[state=checked]/field:hidden" />
                 <IconCircleCheckFilled className="fill-primary hidden size-5 group-has-data-[state=checked]/field:block" />
               </Field>
             </FieldLabel>

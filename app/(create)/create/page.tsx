@@ -6,7 +6,6 @@ import type { SearchParams } from "nuqs/server"
 import { siteConfig } from "@/lib/config"
 import { source } from "@/lib/source"
 import { absoluteUrl } from "@/lib/utils"
-import { Icons } from "@/components/icons"
 import { MainNav } from "@/components/main-nav"
 import { MobileNav } from "@/components/mobile-nav"
 import { ModeSwitcher } from "@/components/mode-switcher"
@@ -22,6 +21,7 @@ import { Preview } from "@/app/(create)/components/preview"
 import { RandomButton } from "@/app/(create)/components/random-button"
 import { ResetButton } from "@/app/(create)/components/reset-button"
 import { ShareButton } from "@/app/(create)/components/share-button"
+import { TokenOverridesProvider } from "@/app/(create)/components/token-overrides-provider"
 import { ToolbarControls } from "@/app/(create)/components/toolbar-controls"
 import { V0Button } from "@/app/(create)/components/v0-button"
 import { WelcomeDialog } from "@/app/(create)/components/welcome-dialog"
@@ -97,13 +97,10 @@ export default async function CreatePage({
               <Button
                 asChild
                 variant="ghost"
-                size="icon"
-                className="hidden size-8 lg:flex"
+                size="sm"
+                className="hidden lg:flex"
               >
-                <Link href="/">
-                  <Icons.logo className="size-5" />
-                  <span className="sr-only">{siteConfig.name}</span>
-                </Link>
+                <Link href="/">{siteConfig.name}</Link>
               </Button>
               <MainNav items={siteConfig.navItems} className="hidden lg:flex" />
             </div>
@@ -132,6 +129,7 @@ export default async function CreatePage({
       </header>
       <main className="flex flex-1 flex-col pb-16 sm:pb-0">
         <SidebarProvider className="flex h-auto min-h-min flex-1 flex-col items-start overflow-hidden px-0">
+          <TokenOverridesProvider>
           <div
             data-slot="designer"
             className="3xl:fixed:container flex w-full flex-1 flex-col gap-2 p-6 pt-1 pb-4 [--sidebar-width:--spacing(40)] sm:gap-2 sm:pt-2 md:flex-row md:pb-6 2xl:gap-6"
@@ -140,6 +138,7 @@ export default async function CreatePage({
             <Preview />
             <Customizer />
           </div>
+          </TokenOverridesProvider>
         </SidebarProvider>
         <WelcomeDialog />
       </main>

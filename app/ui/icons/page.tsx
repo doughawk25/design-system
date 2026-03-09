@@ -4,9 +4,13 @@ import * as React from "react"
 import * as GeistIcons from "@geist-ui/icons"
 
 import { Input } from "@/components/ui/input"
+import { UiShowcaseSectionHeader } from "@/components/ui-showcase/section-header"
+import { UI_SHOWCASE_ITEMS, getUiShowcaseSectionPageNumber } from "@/lib/ui-showcase-config"
 
 export default function IconsPage() {
   const [query, setQuery] = React.useState("")
+  const item = UI_SHOWCASE_ITEMS.find((e) => e.path === "/ui/icons")
+  const pageNumber = getUiShowcaseSectionPageNumber("/ui/icons")
 
   const entries = React.useMemo(
     () =>
@@ -25,12 +29,11 @@ export default function IconsPage() {
 
   return (
     <div className="flex w-full flex-col gap-6">
-      <h1 className="scroll-m-20 text-4xl font-semibold tracking-tight text-balance">
-        Icon
-      </h1>
-      <p className="text-muted-foreground text-sm">
-        Geist icon set from Vercel, exposed as React components.
-      </p>
+      <UiShowcaseSectionHeader
+        title="Icon"
+        description={item?.description}
+        pageNumber={pageNumber}
+      />
       <div className="flex flex-col gap-2">
         <label className="text-muted-foreground text-xs font-medium">
           Search icons

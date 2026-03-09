@@ -13,8 +13,8 @@ export function PreviewCard({
     <div
       className={
         className
-          ? `rounded-lg border border-border bg-card p-4 ${className}`
-          : "rounded-lg border border-border bg-card p-4"
+          ? `rounded-[6px] border border-border bg-card p-4 ${className}`
+          : "rounded-[6px] border border-border bg-card p-4"
       }
     >
       {label && (

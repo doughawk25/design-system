@@ -92,10 +92,12 @@ function ColorSwatchCard({
   name,
   class: c,
   border,
+  baseToken,
 }: {
   name: string
   class: string
   border?: boolean
+  baseToken?: string
 }) {
   const swatchRef = React.useRef<HTMLDivElement>(null)
   const [values, setValues] = React.useState<{
@@ -133,19 +135,21 @@ function ColorSwatchCard({
         />
         <div className="text-muted-foreground flex flex-col gap-0.5 px-0.5 text-xs">
           <span className="font-medium text-foreground">{name}</span>
-          {values && (
+          {baseToken ? (
+            <span className="font-mono text-[10px]">{baseToken}</span>
+          ) : values ? (
             <>
               <span className="font-mono text-[10px]">{values.oklch}</span>
               <span className="font-mono text-[10px]">{values.hex}</span>
             </>
-          )}
+          ) : null}
         </div>
       </div>
     </TokenCopyable>
   )
 }
 
-/** Swatch for Tailwind ramp shades using static bg-* classes so all colors are present. */
+/** Swatch for ramp shades using static bg-* classes so all colors are present. */
 function RampSwatch({
   name,
   shade,
@@ -199,7 +203,7 @@ function RampSwatch({
 
 const SHADES = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950] as const
 
-/** Static Tailwind bg-* classes per ramp so all colors are in the bundle. */
+/** Static bg-* classes per ramp so all colors are in the bundle. */
 const RAMP_BG_CLASSES: Record<string, Record<(typeof SHADES)[number], string>> = {
   zinc: { 50: "bg-zinc-50", 100: "bg-zinc-100", 200: "bg-zinc-200", 300: "bg-zinc-300", 400: "bg-zinc-400", 500: "bg-zinc-500", 600: "bg-zinc-600", 700: "bg-zinc-700", 800: "bg-zinc-800", 900: "bg-zinc-900", 950: "bg-zinc-950" },
   slate: { 50: "bg-slate-50", 100: "bg-slate-100", 200: "bg-slate-200", 300: "bg-slate-300", 400: "bg-slate-400", 500: "bg-slate-500", 600: "bg-slate-600", 700: "bg-slate-700", 800: "bg-slate-800", 900: "bg-slate-900", 950: "bg-slate-950" },
@@ -225,7 +229,7 @@ const RAMP_BG_CLASSES: Record<string, Record<(typeof SHADES)[number], string>> =
   rose: { 50: "bg-rose-50", 100: "bg-rose-100", 200: "bg-rose-200", 300: "bg-rose-300", 400: "bg-rose-400", 500: "bg-rose-500", 600: "bg-rose-600", 700: "bg-rose-700", 800: "bg-rose-800", 900: "bg-rose-900", 950: "bg-rose-950" },
 }
 
-/** Tailwind default color ramps (exposed in color foundations). */
+/** Default color ramps (exposed in color foundations). */
 const TAILWIND_COLOR_RAMPS = [
   { name: "zinc", label: "Zinc" },
   { name: "slate", label: "Slate" },
@@ -255,82 +259,84 @@ const COLOR_TOKEN_GROUPS = [
   {
     title: "Base",
     tokens: [
-      { name: "background", class: "bg-background", border: true },
-      { name: "foreground", class: "bg-foreground" },
-      { name: "card", class: "bg-card", border: true },
-      { name: "card-foreground", class: "bg-card-foreground" },
-      { name: "popover", class: "bg-popover", border: true },
-      { name: "popover-foreground", class: "bg-popover-foreground" },
+      { name: "background", class: "bg-background", border: true, baseToken: "zinc-50" },
+      { name: "foreground", class: "bg-foreground", baseToken: "zinc-950" },
+      { name: "card", class: "bg-card", border: true, baseToken: "zinc-50" },
+      { name: "card-foreground", class: "bg-card-foreground", baseToken: "zinc-950" },
+      { name: "popover", class: "bg-popover", border: true, baseToken: "zinc-50" },
+      { name: "popover-foreground", class: "bg-popover-foreground", baseToken: "zinc-950" },
     ] as const,
   },
   {
     title: "Semantic",
     tokens: [
-      { name: "primary", class: "bg-primary" },
-      { name: "primary-foreground", class: "bg-primary-foreground" },
-      { name: "secondary", class: "bg-secondary", border: true },
-      { name: "secondary-foreground", class: "bg-secondary-foreground" },
-      { name: "muted", class: "bg-muted", border: true },
-      { name: "muted-foreground", class: "bg-muted-foreground" },
-      { name: "accent", class: "bg-accent", border: true },
-      { name: "accent-foreground", class: "bg-accent-foreground" },
-      { name: "destructive", class: "bg-destructive" },
-      { name: "destructive-foreground", class: "bg-destructive-foreground" },
+      { name: "primary", class: "bg-primary", baseToken: "zinc-900" },
+      { name: "primary-foreground", class: "bg-primary-foreground", baseToken: "zinc-50" },
+      { name: "secondary", class: "bg-secondary", border: true, baseToken: "zinc-100" },
+      { name: "secondary-foreground", class: "bg-secondary-foreground", baseToken: "zinc-900" },
+      { name: "muted", class: "bg-muted", border: true, baseToken: "zinc-100" },
+      { name: "muted-foreground", class: "bg-muted-foreground", baseToken: "zinc-500" },
+      { name: "accent", class: "bg-accent", border: true, baseToken: "zinc-100" },
+      { name: "accent-foreground", class: "bg-accent-foreground", baseToken: "zinc-900" },
+      { name: "destructive", class: "bg-destructive", baseToken: "red-600" },
+      { name: "destructive-foreground", class: "bg-destructive-foreground", baseToken: "red-50" },
     ] as const,
   },
   {
     title: "Borders, inputs & ring",
     tokens: [
-      { name: "border", class: "bg-border" },
-      { name: "input", class: "bg-input", border: true },
-      { name: "ring", class: "bg-ring" },
+      { name: "border", class: "bg-border", baseToken: "zinc-200" },
+      { name: "input", class: "bg-input", border: true, baseToken: "zinc-100" },
+      { name: "ring", class: "bg-ring", baseToken: "blue-500" },
     ] as const,
   },
   {
     title: "Surface & code",
     tokens: [
-      { name: "surface", class: "bg-surface", border: true },
-      { name: "surface-foreground", class: "bg-surface-foreground" },
-      { name: "code", class: "bg-code", border: true },
-      { name: "code-foreground", class: "bg-code-foreground" },
-      { name: "code-highlight", class: "bg-code-highlight", border: true },
-      { name: "code-number", class: "bg-code-number" },
+      { name: "surface", class: "bg-surface", border: true, baseToken: "zinc-50" },
+      { name: "surface-foreground", class: "bg-surface-foreground", baseToken: "zinc-950" },
+      { name: "code", class: "bg-code", border: true, baseToken: "zinc-100" },
+      { name: "code-foreground", class: "bg-code-foreground", baseToken: "zinc-900" },
+      { name: "code-highlight", class: "bg-code-highlight", border: true, baseToken: "zinc-200" },
+      { name: "code-number", class: "bg-code-number", baseToken: "zinc-500" },
     ] as const,
   },
   {
     title: "Selection",
     tokens: [
-      { name: "selection", class: "bg-selection" },
-      { name: "selection-foreground", class: "bg-selection-foreground" },
+      { name: "selection", class: "bg-selection", baseToken: "blue-200" },
+      { name: "selection-foreground", class: "bg-selection-foreground", baseToken: "blue-900" },
     ] as const,
   },
   {
     title: "Charts",
     tokens: [
-      { name: "chart-1", class: "bg-chart-1" },
-      { name: "chart-2", class: "bg-chart-2" },
-      { name: "chart-3", class: "bg-chart-3" },
-      { name: "chart-4", class: "bg-chart-4" },
-      { name: "chart-5", class: "bg-chart-5" },
+      { name: "chart-1", class: "bg-chart-1", baseToken: "blue-500" },
+      { name: "chart-2", class: "bg-chart-2", baseToken: "emerald-500" },
+      { name: "chart-3", class: "bg-chart-3", baseToken: "violet-500" },
+      { name: "chart-4", class: "bg-chart-4", baseToken: "amber-500" },
+      { name: "chart-5", class: "bg-chart-5", baseToken: "rose-500" },
     ] as const,
   },
   {
     title: "Sidebar",
     tokens: [
-      { name: "sidebar", class: "bg-sidebar", border: true },
-      { name: "sidebar-foreground", class: "bg-sidebar-foreground" },
-      { name: "sidebar-primary", class: "bg-sidebar-primary" },
+      { name: "sidebar", class: "bg-sidebar", border: true, baseToken: "zinc-50" },
+      { name: "sidebar-foreground", class: "bg-sidebar-foreground", baseToken: "zinc-950" },
+      { name: "sidebar-primary", class: "bg-sidebar-primary", baseToken: "zinc-900" },
       {
         name: "sidebar-primary-foreground",
         class: "bg-sidebar-primary-foreground",
+        baseToken: "zinc-50",
       },
-      { name: "sidebar-accent", class: "bg-sidebar-accent", border: true },
+      { name: "sidebar-accent", class: "bg-sidebar-accent", border: true, baseToken: "zinc-100" },
       {
         name: "sidebar-accent-foreground",
         class: "bg-sidebar-accent-foreground",
+        baseToken: "zinc-900",
       },
-      { name: "sidebar-border", class: "bg-sidebar-border" },
-      { name: "sidebar-ring", class: "bg-sidebar-ring" },
+      { name: "sidebar-border", class: "bg-sidebar-border", baseToken: "zinc-200" },
+      { name: "sidebar-ring", class: "bg-sidebar-ring", baseToken: "blue-500" },
     ] as const,
   },
 ] as const
@@ -357,11 +363,40 @@ export function ColorTokensShowcase() {
     <section id="color">
       <div className="flex flex-col gap-8">
         <div className="mx-2">
-          <h3 className="text-foreground mb-3 text-sm font-normal">
-            Color ramps (Tailwind defaults)
+          <div className="py-16">
+            <h3 className="text-foreground mb-3 text-2xl font-bold">
+              Semantic tokens
+            </h3>
+            <p className="text-muted-foreground mb-4 max-w-2xl text-base">
+              Tokens for background, primary, borders, and other UI roles. Mapped from the palette ramps below.
+            </p>
+          </div>
+          <div className="flex flex-col gap-6">
+            {COLOR_TOKEN_GROUPS.map((group) => (
+              <div key={group.title}>
+                <h4 className="text-muted-foreground mb-2 text-xs font-medium uppercase tracking-wide">
+                  {group.title}
+                </h4>
+                <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4">
+                  {group.tokens.map(({ name, class: c, border, baseToken }) => (
+                    <ColorSwatchCard
+                      key={name}
+                      name={name}
+                      class={c}
+                      border={border}
+                      baseToken={baseToken}
+                    />
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+          <Divider className="my-6" />
+          <h3 className="text-foreground mb-3 text-2xl font-bold">
+            Primitives
           </h3>
-          <p className="text-muted-foreground mb-4 max-w-2xl text-xs">
-            Default palette ramps available as utilities (e.g. bg-zinc-100, text-blue-600) and as
+          <p className="text-muted-foreground mb-4 max-w-2xl text-base">
+            Palette ramps available as utilities (e.g. bg-zinc-100, text-blue-600) and as
             CSS variables (e.g. var(--color-zinc-500)). Shades 50–950.
           </p>
           <div className="flex flex-col gap-8">
@@ -377,32 +412,6 @@ export function ColorTokensShowcase() {
                       name={ramp.name}
                       shade={shade}
                       bgClass={RAMP_BG_CLASSES[ramp.name]?.[shade] ?? ""}
-                    />
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-          <Divider className="my-6" />
-          <h3 className="text-foreground mb-3 text-sm font-normal">
-            Semantic tokens (Tailwind-backed)
-          </h3>
-          <p className="text-muted-foreground mb-4 max-w-2xl text-xs">
-            These tokens map to Tailwind default colors (zinc, red, blue) for background, primary, borders, etc.
-          </p>
-          <div className="flex flex-col gap-6">
-            {COLOR_TOKEN_GROUPS.map((group) => (
-              <div key={group.title}>
-                <h4 className="text-muted-foreground mb-2 text-xs font-medium uppercase tracking-wide">
-                  {group.title}
-                </h4>
-                <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4">
-                  {group.tokens.map(({ name, class: c, border }) => (
-                    <ColorSwatchCard
-                      key={name}
-                      name={name}
-                      class={c}
-                      border={border}
                     />
                   ))}
                 </div>

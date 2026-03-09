@@ -102,7 +102,7 @@
   }
 
   [data-slot="card"] {
-    border-radius: var(--radius);
+    border-radius: 6px;
     padding-block: calc(var(--spacing) * 4);
     gap: calc(var(--spacing) * 2);
   }

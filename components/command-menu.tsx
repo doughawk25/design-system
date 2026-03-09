@@ -406,7 +406,7 @@ export function CommandMenu({
           <DialogDescription>Search for a command to run...</DialogDescription>
         </DialogHeader>
         <Command
-          className="**:data-[slot=command-input-wrapper]:bg-input/50 **:data-[slot=command-input-wrapper]:border-input rounded-none bg-transparent **:data-[slot=command-input]:!h-9 **:data-[slot=command-input]:py-0 **:data-[slot=command-input-wrapper]:mb-0 **:data-[slot=command-input-wrapper]:!h-9 **:data-[slot=command-input-wrapper]:rounded-md **:data-[slot=command-input-wrapper]:border"
+          className="**:data-[slot=command-input-wrapper]:bg-input/50 **:data-[slot=command-input-wrapper]:border-border rounded-none bg-transparent **:data-[slot=command-input]:!h-9 **:data-[slot=command-input]:py-0 **:data-[slot=command-input-wrapper]:mb-0 **:data-[slot=command-input-wrapper]:!h-9 **:data-[slot=command-input-wrapper]:rounded-md **:data-[slot=command-input-wrapper]:border"
           filter={commandFilter}
         >
           <div className="relative">
@@ -493,7 +493,7 @@ function CommandMenuItem({
     <CommandItem
       ref={ref}
       className={cn(
-        "data-[selected=true]:border-input data-[selected=true]:bg-input/50 h-9 rounded-md border border-transparent !px-3 font-medium",
+        "data-[selected=true]:border-border data-[selected=true]:bg-input/50 h-9 rounded-md border border-transparent !px-3 font-medium",
         className
       )}
       {...props}
@@ -567,7 +567,7 @@ function SearchResults({
               router.push(item.url)
               setOpen(false)
             }}
-            className="data-[selected=true]:border-input data-[selected=true]:bg-input/50 h-9 rounded-md border border-transparent !px-3 font-normal"
+            className="data-[selected=true]:border-border data-[selected=true]:bg-input/50 h-9 rounded-md border border-transparent !px-3 font-normal"
             keywords={[item.content]}
             value={`${item.content} ${item.type}`}
           >

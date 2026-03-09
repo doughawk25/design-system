@@ -251,6 +251,16 @@ export const ui: Registry["items"] = [
     type: "registry:ui",
   },
   {
+    name: "grid",
+    type: "registry:ui",
+    files: [
+      {
+        path: "ui/grid.tsx",
+        type: "registry:ui",
+      },
+    ],
+  },
+  {
     name: "hover-card",
     type: "registry:ui",
     files: [

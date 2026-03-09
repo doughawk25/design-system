@@ -362,3 +362,29 @@ export function computedColorToOklchCmyk(computedColor: string): {
     cmyk: rgbToCmykString(rgb),
   }
 }
+
+/** Get RGB 0-1 from computed CSS color string, or null if unparseable. */
+function getRgbFromComputedColor(computedColor: string): [number, number, number] | null {
+  const s = computedColor.trim().toLowerCase()
+  if (s === "transparent") return [0, 0, 0]
+  let rgb = parseRgbString(computedColor)
+  if (!rgb) rgb = parseColorSrgbString(computedColor)
+  if (rgb) return rgb
+  const oklch = parseOklchString(computedColor)
+  if (oklch) return oklchToRgb(oklch.L, oklch.C, oklch.H)
+  rgb = parseHslString(computedColor)
+  if (rgb) return rgb
+  return canvasResolveToRgb(computedColor)
+}
+
+/**
+ * Return black (#000000) or white (#ffffff) for optimal contrast on the given background.
+ * Uses relative luminance (WCAG-style). Use with computed CSS color strings.
+ */
+export function getContrastForegroundFromComputedColor(computedColor: string): "#000000" | "#ffffff" {
+  const rgb = getRgbFromComputedColor(computedColor)
+  if (!rgb) return "#000000"
+  const [r, g, b] = rgb.map((c) => (c <= 0.04045 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4))
+  const luminance = 0.2126 * r + 0.7152 * g + 0.0722 * b
+  return luminance > 0.179 ? "#000000" : "#ffffff"
+}

@@ -5220,6 +5220,31 @@ export const Index: Record<string, Record<string, any>> = {
       categories: undefined,
       meta: undefined,
     },
+    grid: {
+      name: "grid",
+      title: "undefined",
+      description: "",
+      type: "registry:ui",
+      registryDependencies: undefined,
+      files: [
+        {
+          path: "registry/bases/base/ui/grid.tsx",
+          type: "registry:ui",
+          target: "",
+        },
+      ],
+      component: React.lazy(async () => {
+        const mod = await import("@/registry/bases/base/ui/grid.tsx")
+        const exportName =
+          Object.keys(mod).find(
+            (key) =>
+              typeof mod[key] === "function" || typeof mod[key] === "object"
+          ) || item.name
+        return { default: mod.default || mod[exportName] }
+      }),
+      categories: undefined,
+      meta: undefined,
+    },
     "hover-card": {
       name: "hover-card",
       title: "undefined",
@@ -7267,6 +7292,141 @@ export const Index: Record<string, Record<string, any>> = {
             (key) =>
               typeof mod[key] === "function" || typeof mod[key] === "object"
           ) || item.name
+        return { default: mod.default || mod[exportName] }
+      }),
+      categories: undefined,
+      meta: undefined,
+    },
+    "grid-plain-example": {
+      name: "grid-plain-example",
+      title: "Grid (plain)",
+      description: "",
+      type: "registry:example",
+      registryDependencies: ["grid", "example"],
+      files: [{ path: "registry/bases/base/examples/grid-plain-example.tsx", type: "registry:example", target: "" }],
+      component: React.lazy(async () => {
+        const mod = await import("@/registry/bases/base/examples/grid-plain-example.tsx")
+        const exportName = Object.keys(mod).find((k) => typeof mod[k] === "function" || typeof mod[k] === "object") || "grid-plain-example"
+        return { default: mod.default || mod[exportName] }
+      }),
+      categories: undefined,
+      meta: undefined,
+    },
+    "grid-basic-example": {
+      name: "grid-basic-example",
+      title: "Grid (basic)",
+      description: "",
+      type: "registry:example",
+      registryDependencies: ["grid", "example"],
+      files: [{ path: "registry/bases/base/examples/grid-basic-example.tsx", type: "registry:example", target: "" }],
+      component: React.lazy(async () => {
+        const mod = await import("@/registry/bases/base/examples/grid-basic-example.tsx")
+        const exportName = Object.keys(mod).find((k) => typeof mod[k] === "function" || typeof mod[k] === "object") || "grid-basic-example"
+        return { default: mod.default || mod[exportName] }
+      }),
+      categories: undefined,
+      meta: undefined,
+    },
+    "grid-solid-example": {
+      name: "grid-solid-example",
+      title: "Grid (solid)",
+      description: "",
+      type: "registry:example",
+      registryDependencies: ["grid", "example"],
+      files: [{ path: "registry/bases/base/examples/grid-solid-example.tsx", type: "registry:example", target: "" }],
+      component: React.lazy(async () => {
+        const mod = await import("@/registry/bases/base/examples/grid-solid-example.tsx")
+        const exportName = Object.keys(mod).find((k) => typeof mod[k] === "function" || typeof mod[k] === "object") || "grid-solid-example"
+        return { default: mod.default || mod[exportName] }
+      }),
+      categories: undefined,
+      meta: undefined,
+    },
+    "grid-responsive-example": {
+      name: "grid-responsive-example",
+      title: "Grid (responsive)",
+      description: "",
+      type: "registry:example",
+      registryDependencies: ["grid", "example"],
+      files: [{ path: "registry/bases/base/examples/grid-responsive-example.tsx", type: "registry:example", target: "" }],
+      component: React.lazy(async () => {
+        const mod = await import("@/registry/bases/base/examples/grid-responsive-example.tsx")
+        const exportName = Object.keys(mod).find((k) => typeof mod[k] === "function" || typeof mod[k] === "object") || "grid-responsive-example"
+        return { default: mod.default || mod[exportName] }
+      }),
+      categories: undefined,
+      meta: undefined,
+    },
+    "grid-responsive-clipped-example": {
+      name: "grid-responsive-clipped-example",
+      title: "Grid (responsive clipped)",
+      description: "",
+      type: "registry:example",
+      registryDependencies: ["grid", "example"],
+      files: [{ path: "registry/bases/base/examples/grid-responsive-clipped-example.tsx", type: "registry:example", target: "" }],
+      component: React.lazy(async () => {
+        const mod = await import("@/registry/bases/base/examples/grid-responsive-clipped-example.tsx")
+        const exportName = Object.keys(mod).find((k) => typeof mod[k] === "function" || typeof mod[k] === "object") || "grid-responsive-clipped-example"
+        return { default: mod.default || mod[exportName] }
+      }),
+      categories: undefined,
+      meta: undefined,
+    },
+    "grid-hidden-row-guides-example": {
+      name: "grid-hidden-row-guides-example",
+      title: "Grid (hidden row guides)",
+      description: "",
+      type: "registry:example",
+      registryDependencies: ["grid", "example"],
+      files: [{ path: "registry/bases/base/examples/grid-hidden-row-guides-example.tsx", type: "registry:example", target: "" }],
+      component: React.lazy(async () => {
+        const mod = await import("@/registry/bases/base/examples/grid-hidden-row-guides-example.tsx")
+        const exportName = Object.keys(mod).find((k) => typeof mod[k] === "function" || typeof mod[k] === "object") || "grid-hidden-row-guides-example"
+        return { default: mod.default || mod[exportName] }
+      }),
+      categories: undefined,
+      meta: undefined,
+    },
+    "grid-hidden-column-guides-example": {
+      name: "grid-hidden-column-guides-example",
+      title: "Grid (hidden column guides)",
+      description: "",
+      type: "registry:example",
+      registryDependencies: ["grid", "example"],
+      files: [{ path: "registry/bases/base/examples/grid-hidden-column-guides-example.tsx", type: "registry:example", target: "" }],
+      component: React.lazy(async () => {
+        const mod = await import("@/registry/bases/base/examples/grid-hidden-column-guides-example.tsx")
+        const exportName = Object.keys(mod).find((k) => typeof mod[k] === "function" || typeof mod[k] === "object") || "grid-hidden-column-guides-example"
+        return { default: mod.default || mod[exportName] }
+      }),
+      categories: undefined,
+      meta: undefined,
+    },
+    "grid-overlaying-example": {
+      name: "grid-overlaying-example",
+      title: "Grid (overlaying)",
+      description: "",
+      type: "registry:example",
+      registryDependencies: ["grid", "example"],
+      files: [{ path: "registry/bases/base/examples/grid-overlaying-example.tsx", type: "registry:example", target: "" }],
+      component: React.lazy(async () => {
+        const mod = await import("@/registry/bases/base/examples/grid-overlaying-example.tsx")
+        const exportName = Object.keys(mod).find((k) => typeof mod[k] === "function" || typeof mod[k] === "object") || "grid-overlaying-example"
+        return { default: mod.default || mod[exportName] }
+      }),
+      categories: undefined,
+      meta: undefined,
+    },
+    "grid-specific-clipping-example": {
+      name: "grid-specific-clipping-example",
+      title: "Grid (specific clipping)",
+      description: "",
+      type: "registry:example",
+      registryDependencies: ["grid", "example"],
+      files: [{ path: "registry/bases/base/examples/grid-specific-clipping-example.tsx", type: "registry:example", target: "" }],
+      component: React.lazy(async () => {
+        const mod = await import("@/registry/bases/base/examples/grid-specific-clipping-example.tsx")
+        const exportName = Object.keys(mod).find((k) => typeof mod[k] === "function" || typeof mod[k] === "object") || "grid-specific-clipping-example"
         return { default: mod.default || mod[exportName] }
       }),
       categories: undefined,
